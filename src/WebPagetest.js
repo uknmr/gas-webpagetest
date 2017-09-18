@@ -62,7 +62,7 @@ export default class WebPagetest {
 
     return [
       data.completed,
-      new Date(data.completed * 1000).toLocaleString(),
+      Utilities.formatDate(new Date(data.completed * 1000), 'GMT+9', 'yyyyMMddHH'),
       Utils.convertToSeconds(data.average.firstView.TTFB),
       Utils.convertToSeconds(data.average.firstView.loadTime),
       Utils.convertToSeconds(data.average.firstView.domInteractive),
