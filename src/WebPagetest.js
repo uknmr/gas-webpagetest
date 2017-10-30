@@ -59,10 +59,12 @@ export default class WebPagetest {
   getTestResults(testId) {
     const requestURL = this.generateTestResultsURL(testId)
     const {data} = Utils.fetchRequest(requestURL)
+    const date = new Date(data.completed * 1000)
 
     return [
       data.completed,
-      Utilities.formatDate(new Date(data.completed * 1000), 'GMT+9', 'yyyyMMddHH'),
+      Utilities.formatDate(date, 'GMT+9', 'yyyyMMddHH'),
+      Utilities.formatDate(date, 'GMT+9', 'yyyyMMdd'),
       Utils.convertToSeconds(data.average.firstView.TTFB),
       Utils.convertToSeconds(data.average.firstView.loadTime),
       Utils.convertToSeconds(data.average.firstView.domInteractive),
