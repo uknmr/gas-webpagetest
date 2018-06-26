@@ -1,34 +1,28 @@
-const { resolve } = require('path')
+const path = require('path')
+const Dotenv = require('dotenv-webpack')
 const GasPlugin = require('gas-webpack-plugin')
 
 module.exports = {
+  mode: 'none',
   entry: {
-    runTest: './src/runTest.js',
-    getTestResults: './src/getTestResults.js',
+    runTest: './src/runTest.ts',
+    getTestResults: './src/getTestResults.ts',
   },
   output: {
-    path: resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              'env',
-              'gas',
-            ],
-            plugins: ['transform-class-properties'],
-          }
-        }
-      }
-    ]
+        test: /\.ts$/,
+        use: 'ts-loader',
+      },
+    ],
   },
-  plugins: [
-    new GasPlugin(),
-  ],
+  resolve: {
+    extensions: ['.ts', '.js'],
+  },
+  devtool: false,
+  plugins: [new Dotenv(), new GasPlugin()],
 }

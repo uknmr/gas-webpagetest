@@ -1,5 +1,6 @@
 gapps.config.json
-/dist/*.js
+.clasp.json
+/dist/
 
 ### https://raw.github.com/github/gitignore/d5ce0fc1d4a677eaa60d5b8e01ac9e42ec7cfcd1/Node.gitignore
 
@@ -72,7 +73,8 @@ typings/
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
