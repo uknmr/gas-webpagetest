@@ -2,7 +2,7 @@ declare var process: {
   env: {
     WEBPAGETEST_API_KEY: string
     RUN_TEST_URL: string
-    GET_RESULTS_URL: string
+    SHEET_NAME: string
   }
 }
 
