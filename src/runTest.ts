@@ -7,7 +7,8 @@ global.runTest = (): void => {
   const wpt = new WebPagetest(key)
   const testId = wpt.test(url, { runs: 3 })
 
-  const sheet = SpreadsheetApp.getActiveSpreadsheet()!.getSheetByName(sheetName)
+  const activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet()
+  const sheet = activeSpreadsheet!.getSheetByName(sheetName)
   const lastRow = sheet.getLastRow()
   const targetCell = sheet.getRange(lastRow + 1, 1)
 
