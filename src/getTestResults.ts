@@ -3,7 +3,8 @@ import Utils = require('./Utils')
 
 global.getTestResults = () => {
   const sheetName = process.env.SHEET_NAME
-  const sheet = SpreadsheetApp.getActiveSpreadsheet()!.getSheetByName(sheetName)
+  const activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet()
+  const sheet = activeSpreadsheet!.getSheetByName(sheetName)
   const lastTestIdRow = Utils.getLastRow(sheet, 'A')
   const lastCompletedRow = Utils.getLastRow(sheet, 'B')
   const testIds = sheet
