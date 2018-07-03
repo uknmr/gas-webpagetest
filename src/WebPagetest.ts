@@ -66,7 +66,7 @@ class WebPagetest {
             loadTime,
             visualComplete,
             fullyLoaded,
-            'lighthouse.Performance.first-interactive': timeToInteractive,
+            'lighthouse.Performance.interactive': timeToInteractive,
           },
         },
         summary,
