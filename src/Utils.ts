@@ -11,8 +11,8 @@ class Utils {
       .filter(String).length
   }
 
-  public static convertToSeconds(millisecond, digits = 2) {
-    return (millisecond / 1000).toFixed(digits)
+  public static transform(value, digits = 2) {
+    return (value / 1000).toFixed(digits)
   }
 }
 

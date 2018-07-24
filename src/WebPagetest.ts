@@ -47,7 +47,7 @@ class WebPagetest {
     const statusCode = this.getTestStatus(testId)
 
     if (statusCode !== 200) {
-      return new Array(15).fill('')
+      return new Array(27).fill('')
     }
 
     const requestURL = this.generateTestResultsURL(testId)
@@ -67,6 +67,7 @@ class WebPagetest {
             visualComplete,
             fullyLoaded,
             'lighthouse.Performance.interactive': timeToInteractive,
+            breakdown,
           },
         },
         summary,
@@ -78,17 +79,29 @@ class WebPagetest {
       completed,
       Utilities.formatDate(date, 'GMT+9', 'yyyyMMddHH'),
       Utilities.formatDate(date, 'GMT+9', 'yyyyMMdd'),
-      Utils.convertToSeconds(firstByte),
-      Utils.convertToSeconds(firstLayout),
-      Utils.convertToSeconds(firstPaint),
-      Utils.convertToSeconds(firstContentfulPaint),
-      Utils.convertToSeconds(firstMeaningfulPaint),
-      Utils.convertToSeconds(speedIndex),
-      Utils.convertToSeconds(domInteractive),
-      Utils.convertToSeconds(loadTime),
-      Utils.convertToSeconds(visualComplete),
-      Utils.convertToSeconds(fullyLoaded),
-      Utils.convertToSeconds(timeToInteractive),
+      Utils.transform(firstByte),
+      Utils.transform(firstLayout),
+      Utils.transform(firstPaint),
+      Utils.transform(firstContentfulPaint),
+      Utils.transform(firstMeaningfulPaint),
+      Utils.transform(speedIndex),
+      Utils.transform(domInteractive),
+      Utils.transform(loadTime),
+      Utils.transform(visualComplete),
+      Utils.transform(fullyLoaded),
+      Utils.transform(timeToInteractive),
+      Utils.transform(breakdown.html.bytes, 1),
+      breakdown.html.requests,
+      Utils.transform(breakdown.js.bytes, 1),
+      breakdown.js.requests,
+      Utils.transform(breakdown.css.bytes, 1),
+      breakdown.css.requests,
+      Utils.transform(breakdown.image.bytes, 1),
+      breakdown.image.requests,
+      Utils.transform(breakdown.font.bytes, 1),
+      breakdown.font.requests,
+      Utils.transform(breakdown.other.bytes, 1),
+      breakdown.other.requests,
       summary,
     ]
   }
