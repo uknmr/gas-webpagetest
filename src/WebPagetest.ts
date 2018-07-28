@@ -44,6 +44,10 @@ class WebPagetest {
    * @return {Object} responsedata
    */
   public getTestResults(testId) {
+    // 空文字は無視する
+    if (testId.length === 0) {
+      return new Array(27).fill('')
+    }
     const statusCode = this.getTestStatus(testId)
 
     if (statusCode !== 200) {
