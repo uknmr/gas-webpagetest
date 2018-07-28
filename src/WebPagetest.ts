@@ -6,10 +6,7 @@ class WebPagetest {
    * @param {type}	key - runTest するときは必須。
    * @param {type}	server - 省略すれば www.webpagetest.org
    */
-  constructor(
-    private key?: string,
-    private server: string = 'https://www.webpagetest.org',
-  ) {}
+  constructor(private key?: string, private server: string = 'https://www.webpagetest.org') {}
 
   /**
    * WebPagetest 実行
@@ -21,17 +18,13 @@ class WebPagetest {
    */
   public runTest(url: string, options?: Options): string {
     const requestURL = this.generateRunTestURL(url, options)
-    const {
-      data: { testId },
-    } = Utils.fetch(requestURL)
+    const { data: { testId } } = Utils.fetch(requestURL)
 
     return testId
   }
 
   public getTestStatus(testId: string): number {
-    const {
-      data: { statusCode },
-    } = Utils.fetch(this.generateTestStatusURL(testId))
+    const { data: { statusCode } } = Utils.fetch(this.generateTestStatusURL(testId))
 
     return statusCode
   }

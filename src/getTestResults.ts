@@ -26,11 +26,6 @@ global.getTestResults = () => {
   const wpt = new WebPagetest()
   const results = testIds.map(testId => wpt.results(testId))
 
-  const targetRange = sheet.getRange(
-    lastCompletedRow + 1,
-    2,
-    results.length,
-    results[0].length,
-  )
+  const targetRange = sheet.getRange(lastCompletedRow + 1, 2, results.length, results[0].length)
   targetRange.setValues(results)
 }
