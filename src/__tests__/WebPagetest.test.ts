@@ -23,7 +23,7 @@ describe('WebPagetest', () => {
         lighthouse: 0,
       })
       expect(url).toMatchInlineSnapshot(
-        `"https://www.webpagetest.org/runtest.php?url=https%3A%2F%2Fexample.com&location=ec2-ap-northeast-1:Chrome&runs=1&fvonly=1&video=1&f=JSON&noopt=1&k=key&mobile=1&mobileDevice=iPhone5c&lighthouse=1"`
+        `"https://www.webpagetest.org/runtest.php?url=https%3A%2F%2Fexample.com&location=ec2-ap-northeast-1%3AChrome&runs=1&fvonly=0&video=0&f=JSON&noopt=0&k=key&mobile=0&mobileDevice=iPhone5c&lighthouse=0"`
       )
     })
   })

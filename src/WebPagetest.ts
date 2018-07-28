@@ -1,4 +1,4 @@
-import * as queryString from 'query-string'
+import * as queryString from 'querystring'
 import Utils = require('./Utils')
 import 'core-js/modules/es6.array.fill'
 
@@ -121,19 +121,20 @@ class WebPagetest {
    */
   public generateRunTestURL(url: string, options: Options = {}): string {
     const apiEndpoint = `${this.server}/runtest.php`
-    const query =
-      `?url=${encodeURIComponent(url)}` +
-      `&location=${options.location || 'ec2-ap-northeast-1.3GFast'}` +
-      `&runs=${options.runs || 1}` +
-      `&fvonly=${options.fvonly || 1}` +
-      `&video=${options.video || 1}` +
-      `&f=${options.format || 'JSON'}` +
-      `&noopt=${options.noOptimization || 1}` +
-      `&k=${this.key}` +
-      `&mobile=${options.mobile || 1}` +
-      `&mobileDevice=${options.mobileDevice || 'Pixel'}` +
-      `&lighthouse=${options.lighthouse || 1}`
-    return apiEndpoint + query
+    const query = queryString.stringify({
+      url: url,
+      location: options.location || 'ec2-ap-northeast-1.3GFast',
+      runs: options.runs !== undefined ? options.runs : 1,
+      fvonly: options.fvonly !== undefined ? options.fvonly : 1,
+      video: options.video !== undefined ? options.video : 1,
+      f: options.format || 'JSON',
+      noopt: options.noOptimization !== undefined ? options.noOptimization : 1,
+      k: this.key,
+      mobile: options.mobile !== undefined ? options.mobile : 1,
+      mobileDevice: options.mobileDevice || 'Pixel',
+      lighthouse: options.lighthouse !== undefined ? options.lighthouse : 1,
+    })
+    return `${apiEndpoint}?${query}`
   }
 
   private generateTestStatusURL(testId: string) {
