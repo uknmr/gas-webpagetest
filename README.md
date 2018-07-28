@@ -17,11 +17,12 @@ TypeScript 化しました。
     }
     ```
 
-1. `.env` に [WebPagetest API Key](https://www.webpagetest.org/getkey.php) と対象 URI を定義します。
+1. `.env`ファイルを作成し [WebPagetest API Key](https://www.webpagetest.org/getkey.php)、対象 URI、SpreadSheetのシート名を定義します。
 
     ```.env
     WEBPAGETEST_API_KEY=<webpagetest_api_key>
-    RUN_TEST_URL=https://example.jp/
+    RUN_TEST_URL=https://example.com/
+    SHEET_NAME=<Spreadsheetの記録先のシート名>
     ```
 
 1. スクリプトエディタから `runTest` と `getTestResults` を呼び出すトリガーを設定します。
