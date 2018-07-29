@@ -13,6 +13,7 @@ module.exports = {
   entry: {
     runTest: './src/runTest.ts',
     getTestResults: './src/getTestResults.ts',
+    updateColumnTitles: './src/updateColumnTitles.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
