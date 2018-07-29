@@ -18,6 +18,22 @@ type TestResult = {
   timeToInteractive: number
   breakdown: any
   summary: any
+  finalURL: string
+  browserName: string
+  browserVersion: string
+  visualComplete85: number
+  visualComplete90: number
+  visualComplete95: number
+  visualComplete99: number
+  bytesOut: number
+  bytesOutDoc: number
+  bytesIn: number
+  bytesInDoc: number
+  connections: number
+  requestsDoc: number
+  responses_200: number
+  responses_404: number
+  responses_other: number
 }
 
 class WebPagetest {
@@ -62,12 +78,12 @@ class WebPagetest {
   public getTestResults(testId) {
     // 空文字は無視する
     if (testId.length === 0) {
-      return new Array(27).fill('')
+      return new Array(this.countOfResults()).fill('')
     }
-    const statusCode = this.getTestStatus(testId)
 
+    const statusCode = this.getTestStatus(testId)
     if (statusCode !== 200) {
-      return new Array(27).fill('')
+      return new Array(this.countOfResults()).fill('')
     }
 
     const requestURL = this.generateTestResultsURL(testId)
@@ -134,6 +150,22 @@ class WebPagetest {
             fullyLoaded,
             'lighthouse.Performance.interactive': timeToInteractive,
             breakdown,
+            final_url: finalURL,
+            browser_name: browserName,
+            browserVersion,
+            visualComplete85,
+            visualComplete90,
+            visualComplete95,
+            visualComplete99,
+            bytesOut,
+            bytesOutDoc,
+            bytesIn,
+            bytesInDoc,
+            connections,
+            requestsDoc,
+            responses_200,
+            responses_404,
+            responses_other,
           },
         },
         summary,
@@ -157,7 +189,27 @@ class WebPagetest {
       timeToInteractive,
       breakdown,
       summary,
+      finalURL,
+      browserName,
+      browserVersion,
+      visualComplete85,
+      visualComplete90,
+      visualComplete95,
+      visualComplete99,
+      bytesOut,
+      bytesOutDoc,
+      bytesIn,
+      bytesInDoc,
+      connections,
+      requestsDoc,
+      responses_200,
+      responses_404,
+      responses_other,
     }
+  }
+
+  public countOfResults() {
+    return this.generateResultMapping().length
   }
 
   public generateTestResultNames() {
@@ -271,6 +323,22 @@ class WebPagetest {
         value: (result: TestResult) => result.breakdown.font.requests,
       },
       {
+        name: 'flash.bytes',
+        value: (result: TestResult) => Utils.transform(result.breakdown.flash.bytes, 1),
+      },
+      {
+        name: 'flash.requests',
+        value: (result: TestResult) => result.breakdown.flash.requests,
+      },
+      {
+        name: 'video.bytes',
+        value: (result: TestResult) => Utils.transform(result.breakdown.video.bytes, 1),
+      },
+      {
+        name: 'video.requests',
+        value: (result: TestResult) => result.breakdown.video.requests,
+      },
+      {
         name: 'other.bytes',
         value: (result: TestResult) => Utils.transform(result.breakdown.other.bytes, 1),
       },
@@ -281,6 +349,70 @@ class WebPagetest {
       {
         name: 'summary',
         value: (result: TestResult) => result.summary,
+      },
+      {
+        name: 'finalURL',
+        value: (result: TestResult) => result.finalURL,
+      },
+      {
+        name: 'browserName',
+        value: (result: TestResult) => result.browserName,
+      },
+      {
+        name: 'browserVersion',
+        value: (result: TestResult) => result.browserVersion,
+      },
+      {
+        name: 'visualComplete85',
+        value: (result: TestResult) => Utils.transform(result.visualComplete85, 1),
+      },
+      {
+        name: 'visualComplete90',
+        value: (result: TestResult) => Utils.transform(result.visualComplete90, 1),
+      },
+      {
+        name: 'visualComplete95',
+        value: (result: TestResult) => Utils.transform(result.visualComplete95, 1),
+      },
+      {
+        name: 'visualComplete99',
+        value: (result: TestResult) => Utils.transform(result.visualComplete99, 1),
+      },
+      {
+        name: 'bytesOut',
+        value: (result: TestResult) => Utils.transform(result.bytesOut, 1),
+      },
+      {
+        name: 'bytesOutDoc',
+        value: (result: TestResult) => Utils.transform(result.bytesOutDoc, 1),
+      },
+      {
+        name: 'bytesIn',
+        value: (result: TestResult) => Utils.transform(result.bytesIn, 1),
+      },
+      {
+        name: 'bytesInDoc',
+        value: (result: TestResult) => Utils.transform(result.bytesInDoc, 1),
+      },
+      {
+        name: 'connections',
+        value: (result: TestResult) => result.connections,
+      },
+      {
+        name: 'requestsDoc',
+        value: (result: TestResult) => result.requestsDoc,
+      },
+      {
+        name: 'responses_200',
+        value: (result: TestResult) => result.responses_200,
+      },
+      {
+        name: 'responses_404',
+        value: (result: TestResult) => result.responses_404,
+      },
+      {
+        name: 'responses_other',
+        value: (result: TestResult) => result.responses_other,
       },
     ]
   }
