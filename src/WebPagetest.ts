@@ -122,17 +122,25 @@ class WebPagetest {
   public generateRunTestURL(url: string, options: Options = {}): string {
     const apiEndpoint = `${this.server}/runtest.php`
     const query = queryString.stringify({
-      url: url,
-      location: options.location || 'ec2-ap-northeast-1.3GFast',
-      runs: options.runs !== undefined ? options.runs : 1,
-      fvonly: options.fvonly !== undefined ? options.fvonly : 1,
-      video: options.video !== undefined ? options.video : 1,
-      f: options.format || 'JSON',
-      noopt: options.noOptimization !== undefined ? options.noOptimization : 1,
-      k: this.key,
-      mobile: options.mobile !== undefined ? options.mobile : 1,
-      mobileDevice: options.mobileDevice || 'Pixel',
-      lighthouse: options.lighthouse !== undefined ? options.lighthouse : 1,
+      ...{
+        url: url,
+        location: options.location || 'ec2-ap-northeast-1.3GFast',
+        runs: options.runs !== undefined ? options.runs : 1,
+        fvonly: options.fvonly !== undefined ? options.fvonly : 1,
+        video: options.video !== undefined ? options.video : 1,
+        f: options.format || 'JSON',
+        noopt: options.noOptimization !== undefined ? options.noOptimization : 1,
+        k: this.key,
+        mobile: options.mobile !== undefined ? options.mobile : 1,
+        mobileDevice: options.mobileDevice || 'Pixel',
+        lighthouse: options.lighthouse !== undefined ? options.lighthouse : 1,
+      },
+      // omit script if does not pass options.script
+      ...(options.script
+        ? {
+            script: options.script,
+          }
+        : {}),
     })
     return `${apiEndpoint}?${query}`
   }

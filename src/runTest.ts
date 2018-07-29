@@ -23,6 +23,7 @@ global.runTest = (): void => {
   const mobile = Utils.parseNumberValue(process.env.WEBPAGETEST_OPTIONS_MOBILE)
   const mobileDevice = process.env.WEBPAGETEST_OPTIONS_MOBILE_DEVICE
   const lighthouse = Utils.parseNumberValue(process.env.WEBPAGETEST_OPTIONS_LIGHTHOUSE)
+  const script = process.env.WEBPAGETEST_OPTIONS_SCRIPT_CODE
   const wpt = new WebPagetest(key)
   const testId = wpt.test(url, {
     runs,
@@ -35,6 +36,7 @@ global.runTest = (): void => {
     mobile,
     mobileDevice,
     lighthouse,
+    script,
   })
 
   const activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet()
