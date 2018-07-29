@@ -15,14 +15,16 @@ global.updateColumnTitles = (): void => {
   }
   const firstRange = sheet.getRange(1, 1, 1, 1)
   const firstCellValue = firstRange.getValue()
-  const FIRST_CELL_COLUMN_TITLE = 'testId'
-  if (firstCellValue !== FIRST_CELL_COLUMN_TITLE) {
-    // if have not column title, add new column at first row
+  // if 1:1 value is `testId`, update columns
+  // if 1:1 value is not `testId`, add new empty row and update columns
+  const FIRST_CELL_VALUE = 'testId'
+  if (firstCellValue !== FIRST_CELL_VALUE) {
+    // if have not column title, add new row to first
     sheet.insertRowBefore(1)
   }
   // update column titles
   const wpt = new WebPagetest()
-  const titles = [FIRST_CELL_COLUMN_TITLE].concat(wpt.generateTestResultNames())
+  const titles = [FIRST_CELL_VALUE].concat(wpt.generateTestResultNames())
   const targetRange = sheet.getRange(1, 1, 1, titles.length)
   targetRange.setValues([titles])
 }

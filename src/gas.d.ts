@@ -1,5 +1,6 @@
-declare var process: {
-  env: {
+declare namespace NodeJS {
+  // extends process.env
+  interface ProcessEnv {
     WEBPAGETEST_API_KEY?: string
     RUN_TEST_URL?: string
     SHEET_NAME?: string
@@ -13,9 +14,14 @@ declare var process: {
     WEBPAGETEST_OPTIONS_LIGHTHOUSE?: string
     WEBPAGETEST_OPTIONS_SCRIPT_CODE?: string
   }
-}
 
-declare var global: any
+  // extends global
+  export interface Global {
+    runTest: () => void
+    getTestResults: () => void
+    updateColumnTitles: () => void
+  }
+}
 
 declare type Options = Partial<{
   location: string
