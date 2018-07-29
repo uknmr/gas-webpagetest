@@ -51,14 +51,14 @@ navigate    news.aol.com/world
   describe('generateTestResult', () => {
     beforeAll(() => {
       // stub https://developers.google.com/apps-script/reference/utilities/utilities#formatdatedate-timezone-format
-      global.Utilities = {
+      ;(global as any).Utilities = {
         formatDate: (date: Date, timeZone: string, format: string) => {
           return `${date.toISOString()}, ${timeZone}, ${format}`
         },
       }
     })
     afterAll(() => {
-      delete global.Utilities
+      delete (global as any).Utilities
     })
     it('should return result values', () => {
       const webPagetest = new WebPagetest('key')
