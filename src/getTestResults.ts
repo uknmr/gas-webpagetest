@@ -1,7 +1,7 @@
 import WebPagetest = require('./WebPagetest')
 import Utils = require('./Utils')
 
-global.getTestResults = () => {
+export const getTestResults = () => {
   const sheetName = process.env.SHEET_NAME
   if (!sheetName) {
     throw new Error('should define SHEET_NAME in .env')
