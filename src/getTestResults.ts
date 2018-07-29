@@ -3,6 +3,9 @@ import Utils = require('./Utils')
 
 global.getTestResults = () => {
   const sheetName = process.env.SHEET_NAME
+  if (!sheetName) {
+    throw new Error('should define SHEET_NAME in .env')
+  }
   const activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet()
   if (!activeSpreadsheet) {
     throw new Error('Not found active spreadsheet')
