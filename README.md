@@ -17,12 +17,20 @@ TypeScript 化しました。
     }
     ```
 
-1. `.env`ファイルを作成し [WebPagetest API Key](https://www.webpagetest.org/getkey.php)、対象 URI、SpreadSheetのシート名を定義します。
+1. `.env.example`を`.env`へリネームします。
+`.env`の[WebPagetest API Key](https://www.webpagetest.org/getkey.php)、対象 URI、SpreadSheetのシート名は必須であるため、自身の環境に合わせて設定してください。
 
     ```.env
     WEBPAGETEST_API_KEY=<webpagetest_api_key>
     RUN_TEST_URL=https://example.com/
     SHEET_NAME=<Spreadsheetの記録先のシート名>
+    
+    # WebPagetest Options
+    # https://sites.google.com/a/webpagetest.org/docs/advanced-features/webpagetest-restful-apis
+    ## Number of test runs (1-10 on the public instance)
+    ## gas-webpagetest use median results
+    WEBPAGETEST_OPTIONS_RUNS=3
+    # ... その他のオプション .... 
     ```
 
 1. スクリプトエディタから `runTest` と `getTestResults` を呼び出すトリガーを設定します。
