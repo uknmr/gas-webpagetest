@@ -11,6 +11,7 @@ declare var process: {
     WEBPAGETEST_OPTIONS_MOBILE?: string
     WEBPAGETEST_OPTIONS_MOBILE_DEVICE?: string
     WEBPAGETEST_OPTIONS_LIGHTHOUSE?: string
+    WEBPAGETEST_OPTIONS_SCRIPT_CODE?: string
   }
 }
 
@@ -26,4 +27,5 @@ declare type Options = Partial<{
   mobile: number
   mobileDevice: string
   lighthouse: number
+  script: string
 }>
