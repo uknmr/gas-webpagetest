@@ -1,0 +1,387 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WebPagetest generateTestResult should return results: WebPagetest-response-google.com 1`] = `
+Array [
+  Object {
+    "name": "completedTimeStamp",
+    "value": 1532835031,
+  },
+  Object {
+    "name": "yyyyMMddHH",
+    "value": "2018-07-29T03:30:31.000Z, GMT+9, yyyyMMddHH",
+  },
+  Object {
+    "name": "yyyyMMdd",
+    "value": "2018-07-29T03:30:31.000Z, GMT+9, yyyyMMdd",
+  },
+  Object {
+    "name": "firstByte",
+    "value": "0.48",
+  },
+  Object {
+    "name": "firstLayout",
+    "value": "0.54",
+  },
+  Object {
+    "name": "firstPaint",
+    "value": "0.59",
+  },
+  Object {
+    "name": "firstContentfulPaint",
+    "value": "0.59",
+  },
+  Object {
+    "name": "firstMeaningfulPaint",
+    "value": "0.59",
+  },
+  Object {
+    "name": "speedIndex",
+    "value": "0.61",
+  },
+  Object {
+    "name": "domInteractive",
+    "value": "0.63",
+  },
+  Object {
+    "name": "loadTime",
+    "value": "1.47",
+  },
+  Object {
+    "name": "visualComplete",
+    "value": "1.10",
+  },
+  Object {
+    "name": "fullyLoaded",
+    "value": "1.91",
+  },
+  Object {
+    "name": "timeToInteractive",
+    "value": "1.96",
+  },
+  Object {
+    "name": "html.bytes",
+    "value": "68.6",
+  },
+  Object {
+    "name": "html.requests",
+    "value": 9,
+  },
+  Object {
+    "name": "js.bytes",
+    "value": "286.7",
+  },
+  Object {
+    "name": "js.requests",
+    "value": 5,
+  },
+  Object {
+    "name": "css.bytes",
+    "value": "0.0",
+  },
+  Object {
+    "name": "css.requests",
+    "value": 0,
+  },
+  Object {
+    "name": "image.bytes",
+    "value": "37.7",
+  },
+  Object {
+    "name": "image.requests",
+    "value": 6,
+  },
+  Object {
+    "name": "font.bytes",
+    "value": "0.0",
+  },
+  Object {
+    "name": "font.requests",
+    "value": 0,
+  },
+  Object {
+    "name": "flash.bytes",
+    "value": "0.0",
+  },
+  Object {
+    "name": "flash.requests",
+    "value": 0,
+  },
+  Object {
+    "name": "video.bytes",
+    "value": "0.0",
+  },
+  Object {
+    "name": "video.requests",
+    "value": 0,
+  },
+  Object {
+    "name": "other.bytes",
+    "value": "0.0",
+  },
+  Object {
+    "name": "other.requests",
+    "value": 0,
+  },
+  Object {
+    "name": "summary",
+    "value": "http://www.webpagetest.org/results.php?test=180729_D6_c92a1ce569da3ae435ac558fc934a38b",
+  },
+  Object {
+    "name": "finalURL",
+    "value": "https://www.google.com/",
+  },
+  Object {
+    "name": "browserName",
+    "value": "Chrome",
+  },
+  Object {
+    "name": "browserVersion",
+    "value": "68.0.3440.75",
+  },
+  Object {
+    "name": "visualComplete85",
+    "value": "0.6",
+  },
+  Object {
+    "name": "visualComplete90",
+    "value": "0.6",
+  },
+  Object {
+    "name": "visualComplete95",
+    "value": "0.7",
+  },
+  Object {
+    "name": "visualComplete99",
+    "value": "0.7",
+  },
+  Object {
+    "name": "bytesOut",
+    "value": "12.3",
+  },
+  Object {
+    "name": "bytesOutDoc",
+    "value": "8.7",
+  },
+  Object {
+    "name": "bytesIn",
+    "value": "393.0",
+  },
+  Object {
+    "name": "bytesInDoc",
+    "value": "374.2",
+  },
+  Object {
+    "name": "connections",
+    "value": 8,
+  },
+  Object {
+    "name": "requestsDoc",
+    "value": 15,
+  },
+  Object {
+    "name": "responses_200",
+    "value": 13,
+  },
+  Object {
+    "name": "responses_404",
+    "value": 0,
+  },
+  Object {
+    "name": "responses_other",
+    "value": 7,
+  },
+]
+`;
+
+exports[`WebPagetest generateTestResult should return results: WebPagetest-response-youtube.com 1`] = `
+Array [
+  Object {
+    "name": "completedTimeStamp",
+    "value": 1532877614,
+  },
+  Object {
+    "name": "yyyyMMddHH",
+    "value": "2018-07-29T15:20:14.000Z, GMT+9, yyyyMMddHH",
+  },
+  Object {
+    "name": "yyyyMMdd",
+    "value": "2018-07-29T15:20:14.000Z, GMT+9, yyyyMMdd",
+  },
+  Object {
+    "name": "firstByte",
+    "value": "0.27",
+  },
+  Object {
+    "name": "firstLayout",
+    "value": "2.93",
+  },
+  Object {
+    "name": "firstPaint",
+    "value": "3.11",
+  },
+  Object {
+    "name": "firstContentfulPaint",
+    "value": "3.11",
+  },
+  Object {
+    "name": "firstMeaningfulPaint",
+    "value": "3.99",
+  },
+  Object {
+    "name": "speedIndex",
+    "value": "3.93",
+  },
+  Object {
+    "name": "domInteractive",
+    "value": "3.61",
+  },
+  Object {
+    "name": "loadTime",
+    "value": "4.01",
+  },
+  Object {
+    "name": "visualComplete",
+    "value": "5.20",
+  },
+  Object {
+    "name": "fullyLoaded",
+    "value": "6.34",
+  },
+  Object {
+    "name": "timeToInteractive",
+    "value": "17.38",
+  },
+  Object {
+    "name": "html.bytes",
+    "value": "448.6",
+  },
+  Object {
+    "name": "html.requests",
+    "value": 11,
+  },
+  Object {
+    "name": "js.bytes",
+    "value": "1067.7",
+  },
+  Object {
+    "name": "js.requests",
+    "value": 13,
+  },
+  Object {
+    "name": "css.bytes",
+    "value": "52.2",
+  },
+  Object {
+    "name": "css.requests",
+    "value": 3,
+  },
+  Object {
+    "name": "image.bytes",
+    "value": "116.7",
+  },
+  Object {
+    "name": "image.requests",
+    "value": 21,
+  },
+  Object {
+    "name": "font.bytes",
+    "value": "31.3",
+  },
+  Object {
+    "name": "font.requests",
+    "value": 2,
+  },
+  Object {
+    "name": "flash.bytes",
+    "value": "0.0",
+  },
+  Object {
+    "name": "flash.requests",
+    "value": 0,
+  },
+  Object {
+    "name": "video.bytes",
+    "value": "432.5",
+  },
+  Object {
+    "name": "video.requests",
+    "value": 3,
+  },
+  Object {
+    "name": "other.bytes",
+    "value": "253.7",
+  },
+  Object {
+    "name": "other.requests",
+    "value": 6,
+  },
+  Object {
+    "name": "summary",
+    "value": "http://www.webpagetest.org/results.php?test=180729_3T_4e4850ed9a41879faafa4c55ee411fce",
+  },
+  Object {
+    "name": "finalURL",
+    "value": "https://www.youtube.com/watch?v=6UeRMMI_IzI",
+  },
+  Object {
+    "name": "browserName",
+    "value": "Chrome",
+  },
+  Object {
+    "name": "browserVersion",
+    "value": "68.0.3440.75",
+  },
+  Object {
+    "name": "visualComplete85",
+    "value": "5.0",
+  },
+  Object {
+    "name": "visualComplete90",
+    "value": "5.0",
+  },
+  Object {
+    "name": "visualComplete95",
+    "value": "5.2",
+  },
+  Object {
+    "name": "visualComplete99",
+    "value": "5.2",
+  },
+  Object {
+    "name": "bytesOut",
+    "value": "32.3",
+  },
+  Object {
+    "name": "bytesOutDoc",
+    "value": "14.0",
+  },
+  Object {
+    "name": "bytesIn",
+    "value": "2402.7",
+  },
+  Object {
+    "name": "bytesInDoc",
+    "value": "1632.8",
+  },
+  Object {
+    "name": "connections",
+    "value": 15,
+  },
+  Object {
+    "name": "requestsDoc",
+    "value": 27,
+  },
+  Object {
+    "name": "responses_200",
+    "value": 52,
+  },
+  Object {
+    "name": "responses_404",
+    "value": 0,
+  },
+  Object {
+    "name": "responses_other",
+    "value": 7,
+  },
+]
+`;
