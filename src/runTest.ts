@@ -1,7 +1,7 @@
 import WebPagetest = require('./WebPagetest')
 import Utils = require('./Utils')
 
-global.runTest = (): void => {
+export const runTest = (): void => {
   const key = process.env.WEBPAGETEST_API_KEY
   if (!key) {
     throw new Error('should define WEBPAGETEST_API_KEY in .env')

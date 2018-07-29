@@ -11,9 +11,7 @@ const WEBPAGETEST_OPTIONS_SCRIPT_CODE = fs.existsSync(SCRIPT_FILE_PATH)
 module.exports = {
   mode: 'none',
   entry: {
-    runTest: './src/runTest.ts',
-    getTestResults: './src/getTestResults.ts',
-    updateColumnTitles: './src/updateColumnTitles.ts',
+    'gas-webpagetest': './src/index.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

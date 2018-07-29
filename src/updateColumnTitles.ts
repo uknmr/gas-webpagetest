@@ -1,6 +1,6 @@
 import WebPagetest = require('./WebPagetest')
 
-global.updateColumnTitles = (): void => {
+export const updateColumnTitles = (): void => {
   const sheetName = process.env.SHEET_NAME
   if (!sheetName) {
     throw new Error('should define SHEET_NAME in .env')
