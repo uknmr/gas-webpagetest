@@ -2,6 +2,24 @@ import * as queryString from 'querystring'
 import Utils = require('./Utils')
 import 'core-js/modules/es6.array.fill'
 
+type TestResult = {
+  completed: number
+  date: Date
+  firstByte: number
+  firstLayout: number
+  firstPaint: number
+  firstContentfulPaint: number
+  firstMeaningfulPaint: number
+  speedIndex: number
+  domInteractive: number
+  loadTime: number
+  visualComplete: number
+  fullyLoaded: number
+  timeToInteractive: number
+  breakdown: any
+  summary: any
+}
+
 class WebPagetest {
   /**
    * @param {type}    key - runTest するときは必須。
@@ -53,59 +71,8 @@ class WebPagetest {
     }
 
     const requestURL = this.generateTestResultsURL(testId)
-    const {
-      data: {
-        completed,
-        median: {
-          firstView: {
-            TTFB: firstByte,
-            firstLayout,
-            firstPaint,
-            firstContentfulPaint,
-            firstMeaningfulPaint,
-            SpeedIndex: speedIndex,
-            domInteractive,
-            loadTime,
-            visualComplete,
-            fullyLoaded,
-            'lighthouse.Performance.interactive': timeToInteractive,
-            breakdown,
-          },
-        },
-        summary,
-      },
-    } = Utils.fetch(requestURL)
-    const date = new Date(completed * 1000)
-
-    return [
-      completed,
-      Utilities.formatDate(date, 'GMT+9', 'yyyyMMddHH'),
-      Utilities.formatDate(date, 'GMT+9', 'yyyyMMdd'),
-      Utils.transform(firstByte),
-      Utils.transform(firstLayout),
-      Utils.transform(firstPaint),
-      Utils.transform(firstContentfulPaint),
-      Utils.transform(firstMeaningfulPaint),
-      Utils.transform(speedIndex),
-      Utils.transform(domInteractive),
-      Utils.transform(loadTime),
-      Utils.transform(visualComplete),
-      Utils.transform(fullyLoaded),
-      Utils.transform(timeToInteractive),
-      Utils.transform(breakdown.html.bytes, 1),
-      breakdown.html.requests,
-      Utils.transform(breakdown.js.bytes, 1),
-      breakdown.js.requests,
-      Utils.transform(breakdown.css.bytes, 1),
-      breakdown.css.requests,
-      Utils.transform(breakdown.image.bytes, 1),
-      breakdown.image.requests,
-      Utils.transform(breakdown.font.bytes, 1),
-      breakdown.font.requests,
-      Utils.transform(breakdown.other.bytes, 1),
-      breakdown.other.requests,
-      summary,
-    ]
+    const response = Utils.fetch(requestURL)
+    return this.generateTestResultValues(this.convertWebPageResponseToResult(response))
   }
 
   public test = this.runTest
@@ -143,6 +110,179 @@ class WebPagetest {
         : {}),
     })
     return `${apiEndpoint}?${query}`
+  }
+
+  /**
+   * WebPagetestのresponseからTestResultオブジェクトに変換します
+   * @param response
+   */
+  public convertWebPageResponseToResult(response: any): TestResult {
+    const {
+      data: {
+        completed,
+        median: {
+          firstView: {
+            TTFB: firstByte,
+            firstLayout,
+            firstPaint,
+            firstContentfulPaint,
+            firstMeaningfulPaint,
+            SpeedIndex: speedIndex,
+            domInteractive,
+            loadTime,
+            visualComplete,
+            fullyLoaded,
+            'lighthouse.Performance.interactive': timeToInteractive,
+            breakdown,
+          },
+        },
+        summary,
+      },
+    } = response
+
+    const date = new Date(completed * 1000)
+    return {
+      completed,
+      date,
+      firstByte,
+      firstLayout,
+      firstPaint,
+      firstContentfulPaint,
+      firstMeaningfulPaint,
+      speedIndex,
+      domInteractive,
+      loadTime,
+      visualComplete,
+      fullyLoaded,
+      timeToInteractive,
+      breakdown,
+      summary,
+    }
+  }
+
+  public generateTestResultNames() {
+    return this.generateResultMapping().map(map => {
+      return map.name
+    })
+  }
+
+  public generateTestResultValues(result: TestResult) {
+    return this.generateResultMapping().map(map => {
+      return map.value(result)
+    })
+  }
+
+  private generateResultMapping() {
+    return [
+      {
+        name: 'completedTimeStamp',
+        value: (result: TestResult) => result.completed,
+      },
+      {
+        name: 'yyyyMMddHH',
+        value: (result: TestResult) => Utilities.formatDate(result.date, 'GMT+9', 'yyyyMMddHH'),
+      },
+      {
+        name: 'yyyyMMdd',
+        value: (result: TestResult) => Utilities.formatDate(result.date, 'GMT+9', 'yyyyMMdd'),
+      },
+      {
+        name: 'firstByte',
+        value: (result: TestResult) => Utils.transform(result.firstByte),
+      },
+      {
+        name: 'firstLayout',
+        value: (result: TestResult) => Utils.transform(result.firstLayout),
+      },
+      {
+        name: 'firstPaint',
+        value: (result: TestResult) => Utils.transform(result.firstPaint),
+      },
+      {
+        name: 'firstContentfulPaint',
+        value: (result: TestResult) => Utils.transform(result.firstContentfulPaint),
+      },
+      {
+        name: 'firstMeaningfulPaint',
+        value: (result: TestResult) => Utils.transform(result.firstMeaningfulPaint),
+      },
+      {
+        name: 'speedIndex',
+        value: (result: TestResult) => Utils.transform(result.speedIndex),
+      },
+      {
+        name: 'domInteractive',
+        value: (result: TestResult) => Utils.transform(result.domInteractive),
+      },
+      {
+        name: 'loadTime',
+        value: (result: TestResult) => Utils.transform(result.loadTime),
+      },
+      {
+        name: 'visualComplete',
+        value: (result: TestResult) => Utils.transform(result.visualComplete),
+      },
+      {
+        name: 'fullyLoaded',
+        value: (result: TestResult) => Utils.transform(result.fullyLoaded),
+      },
+      {
+        name: 'timeToInteractive',
+        value: (result: TestResult) => Utils.transform(result.timeToInteractive),
+      },
+      {
+        name: 'html.bytes',
+        value: (result: TestResult) => Utils.transform(result.breakdown.html.bytes, 1),
+      },
+      {
+        name: 'html.requests',
+        value: (result: TestResult) => result.breakdown.html.requests,
+      },
+      {
+        name: 'js.bytes',
+        value: (result: TestResult) => Utils.transform(result.breakdown.js.bytes, 1),
+      },
+      {
+        name: 'js.requests',
+        value: (result: TestResult) => result.breakdown.js.requests,
+      },
+      {
+        name: 'css.bytes',
+        value: (result: TestResult) => Utils.transform(result.breakdown.css.bytes, 1),
+      },
+      {
+        name: 'css.requests',
+        value: (result: TestResult) => result.breakdown.css.requests,
+      },
+      {
+        name: 'image.bytes',
+        value: (result: TestResult) => Utils.transform(result.breakdown.image.bytes, 1),
+      },
+      {
+        name: 'image.requests',
+        value: (result: TestResult) => result.breakdown.image.requests,
+      },
+      {
+        name: 'font.bytes',
+        value: (result: TestResult) => Utils.transform(result.breakdown.font.bytes, 1),
+      },
+      {
+        name: 'font.requests',
+        value: (result: TestResult) => result.breakdown.font.requests,
+      },
+      {
+        name: 'other.bytes',
+        value: (result: TestResult) => Utils.transform(result.breakdown.other.bytes, 1),
+      },
+      {
+        name: 'other.requests',
+        value: (result: TestResult) => result.breakdown.other.requests,
+      },
+      {
+        name: 'summary',
+        value: (result: TestResult) => result.summary,
+      },
+    ]
   }
 
   private generateTestStatusURL(testId: string) {
