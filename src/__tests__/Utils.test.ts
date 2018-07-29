@@ -11,7 +11,7 @@ describe('Utils', () => {
     it('should return number if value is number string', () => {
       expect(Utils.parseNumberValue('0')).toBe(0)
       expect(Utils.parseNumberValue('1')).toBe(1)
-      expect(Utils.parseNumberValue('99.9')).toBe(90.9)
+      expect(Utils.parseNumberValue('99.9')).toBe(99.9)
     })
     it('should throw error if value can not be parsed', () => {
       expect(() => {

@@ -6,6 +6,7 @@
     "push": "clasp push",
     "clean": "rimraf dist",
     "build": "webpack",
+    "test": "jest",
     "postbuild": "cpx appsscript.json dist",
     "prettier": "prettier --write \"**/*.{js,ts}\"",
     "precommit": "lint-staged",
