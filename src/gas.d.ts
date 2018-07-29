@@ -3,6 +3,7 @@ declare var process: {
     WEBPAGETEST_API_KEY: string
     RUN_TEST_URL: string
     SHEET_NAME: string
+    WEBPAGETEST_OPTIONS_RUNS: string
   }
 }
 

@@ -1,11 +1,13 @@
 import WebPagetest = require('./WebPagetest')
+import Utils = require('./Utils')
 
 global.runTest = (): void => {
   const key = process.env.WEBPAGETEST_API_KEY
   const url = process.env.RUN_TEST_URL
   const sheetName = process.env.SHEET_NAME
+  const runs = Utils.parseNumberValue(process.env.WEBPAGETEST_OPTIONS_RUNS)
   const wpt = new WebPagetest(key)
-  const testId = wpt.test(url, { runs: 3 })
+  const testId = wpt.test(url, { runs: runs })
 
   const activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet()
   if (!activeSpreadsheet) {
