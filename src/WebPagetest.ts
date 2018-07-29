@@ -1,30 +1,35 @@
+import * as queryString from 'querystring'
 import Utils = require('./Utils')
 import 'core-js/modules/es6.array.fill'
 
 class WebPagetest {
   /**
-   * @param {type}	key - runTest するときは必須。
-   * @param {type}	server - 省略すれば www.webpagetest.org
+   * @param {type}    key - runTest するときは必須。
+   * @param {type}    server - 省略すれば www.webpagetest.org
    */
   constructor(private key?: string, private server: string = 'https://www.webpagetest.org') {}
 
   /**
    * WebPagetest 実行
    *
-   * @param {type}	url - this is the parameter url
-   * @param {type}	options - this is the parameter options
+   * @param {type}    url - this is the parameter url
+   * @param {type}    options - this is the parameter options
    *
    * @return {} testId
    */
   public runTest(url: string, options?: Options): string {
     const requestURL = this.generateRunTestURL(url, options)
-    const { data: { testId } } = Utils.fetch(requestURL)
+    const {
+      data: { testId },
+    } = Utils.fetch(requestURL)
 
     return testId
   }
 
   public getTestStatus(testId: string): number {
-    const { data: { statusCode } } = Utils.fetch(this.generateTestStatusURL(testId))
+    const {
+      data: { statusCode },
+    } = Utils.fetch(this.generateTestStatusURL(testId))
 
     return statusCode
   }
@@ -32,7 +37,7 @@ class WebPagetest {
   /**
    * テスト結果取得
    *
-   * @param {type}	testId - this is the parameter testId
+   * @param {type}    testId - this is the parameter testId
    *
    * @return {Object} responsedata
    */
@@ -109,26 +114,27 @@ class WebPagetest {
   /**
    * WebPagetest 実行用 URL 生成
    *
-   * @param {type}	url - 必須。
-   * @param {type}	options - 省略可能。
+   * @param {type}    url - 必須。
+   * @param {type}    options - 省略可能。
    *
    * @return {String} URL
    */
-  private generateRunTestURL(url: string, options: Options = {}): string {
-    return (
-      `${this.server}/runtest.php` +
-      `?url=${encodeURIComponent(url)}` +
-      `&location=${options.location || 'ec2-ap-northeast-1.3GFast'}` +
-      `&runs=${options.runs || 1}` +
-      `&fvonly=${options.fvonly || 1}` +
-      `&video=${options.video || 1}` +
-      `&f=${options.format || 'JSON'}` +
-      `&noopt=${options.noOptimization || 1}` +
-      `&k=${this.key}` +
-      `&mobile=${options.mobile || 1}` +
-      `&mobileDevice=${options.mobileDevice || 'Pixel'}` +
-      `&lighthouse=${options.lighthouse || 1}`
-    )
+  public generateRunTestURL(url: string, options: Options = {}): string {
+    const apiEndpoint = `${this.server}/runtest.php`
+    const query = queryString.stringify({
+      url: url,
+      location: options.location || 'ec2-ap-northeast-1.3GFast',
+      runs: options.runs !== undefined ? options.runs : 1,
+      fvonly: options.fvonly !== undefined ? options.fvonly : 1,
+      video: options.video !== undefined ? options.video : 1,
+      f: options.format || 'JSON',
+      noopt: options.noOptimization !== undefined ? options.noOptimization : 1,
+      k: this.key,
+      mobile: options.mobile !== undefined ? options.mobile : 1,
+      mobileDevice: options.mobileDevice || 'Pixel',
+      lighthouse: options.lighthouse !== undefined ? options.lighthouse : 1,
+    })
+    return `${apiEndpoint}?${query}`
   }
 
   private generateTestStatusURL(testId: string) {
@@ -138,7 +144,7 @@ class WebPagetest {
   /**
    * WebPagetest 実行結果用 URL 生成
    *
-   * @param {type}	testId - this is the parameter testId
+   * @param {type}    testId - this is the parameter testId
    *
    * @return {String} URL
    */
