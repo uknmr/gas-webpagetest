@@ -16,6 +16,11 @@ export const getTestResults = () => {
   }
   const lastTestIdRow = Utils.getLastRow(sheet, 'A')
   const lastCompletedRow = Utils.getLastRow(sheet, 'B')
+  Logger.log('lastTestIdRow: %s, lastCompletedRow: %s', lastTestIdRow, lastCompletedRow)
+  if (lastTestIdRow === lastCompletedRow) {
+    Logger.log('すべての testId の結果が取得済みです')
+    return
+  }
   const testIds = sheet
     .getRange(`A${lastCompletedRow + 1}:A${lastTestIdRow}`)
     .getValues()
@@ -25,7 +30,7 @@ export const getTestResults = () => {
     Logger.log('対象 testId はありませんでした')
     return
   }
-
+  Logger.log('testIds: %s', testIds.join('\n'))
   const wpt = new WebPagetest()
   const results = testIds.map(testId => wpt.results(testId))
 
