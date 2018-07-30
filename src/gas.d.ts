@@ -20,6 +20,7 @@ declare namespace NodeJS {
     runTest: () => void
     getTestResults: () => void
     updateColumnTitles: () => void
+    onOpen: () => void
   }
 }
 
