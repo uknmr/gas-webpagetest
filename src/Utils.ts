@@ -31,6 +31,44 @@ class Utils {
     }
     return numberValue
   }
+
+  /**
+   * Parse time formatted value and return { type, value }
+   * Accept format: <value><unit>
+   *   - <value>: number
+   *   - <unit>: `h` or `m`
+   */
+  public static parseTimeFormat(
+    value?: string
+  ): { type: 'HOUR' | 'MINUTE'; value: number } | Error {
+    if (!value) {
+      return new Error('value is undefined')
+    }
+    const TIME_FORMATS: { type: 'HOUR' | 'MINUTE'; pattern: RegExp }[] = [
+      {
+        type: 'HOUR',
+        pattern: /^(\d+)h$/,
+      },
+      {
+        type: 'MINUTE',
+        pattern: /^(\d+)m$/,
+      },
+    ]
+    for (let i = 0; i < TIME_FORMATS.length; i++) {
+      const format = TIME_FORMATS[i]
+      if (format.pattern.test(value)) {
+        const match = value.match(format.pattern)
+        if (!match) {
+          throw new Error(`Does not parsed value: ${value}`)
+        }
+        return {
+          type: format.type,
+          value: Number(match[1]),
+        }
+      }
+    }
+    return new Error(`Does not parsed value: ${value}`)
+  }
 }
 
 export = Utils

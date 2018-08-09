@@ -1,8 +1,10 @@
+export type EveryMinutesType = 1 | 5 | 10 | 15 | 30
+
 export class TimeTrigger {
   /**
    * @see https://developers.google.com/apps-script/reference/script/clock-trigger-builder#everyHours(Integer)
    */
-  public addNewEveryHourTrigger(functionName: string, hours: number) {
+  public addNewEveryHoursTrigger(functionName: string, hours: number) {
     ScriptApp.newTrigger(functionName)
       .timeBased()
       .everyHours(hours)
@@ -10,12 +12,19 @@ export class TimeTrigger {
   }
 
   /**
+   * EveryMinutes's value must be one of 1, 5, 10, 15 or 30.
+   */
+  public canAcceptableAsEveryMinutes(minutes: number): minutes is EveryMinutesType {
+    return [1, 5, 10, 15, 30].indexOf(minutes) !== -1
+  }
+
+  /**
    * @see https://developers.google.com/apps-script/reference/script/clock-trigger-builder#everyMinutes(Integer)
    */
-  public addNewEveryMinutesTrigger(functionName: string, minutes: 1 | 5 | 10 | 15 | 30) {
+  public addNewEveryMinutesTrigger(functionName: string, minutes: EveryMinutesType) {
     ScriptApp.newTrigger(functionName)
       .timeBased()
-      .everyMinutes(minutes) // It must be one of 1, 5, 10, 15 or 30.
+      .everyMinutes(minutes)
       .create()
   }
 
