@@ -3,7 +3,7 @@ declare namespace NodeJS {
   interface ProcessEnv {
     WEBPAGETEST_API_KEY?: string
     RUN_TEST_URL?: string
-    RUN_TEST_INTERVAL_HOURS?: string
+    RUN_TEST_INTERVAL?: string
     SHEET_NAME?: string
     WEBPAGETEST_OPTIONS_RUNS?: string
     WEBPAGETEST_OPTIONS_LOCATION?: string
