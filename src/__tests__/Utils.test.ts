@@ -19,4 +19,27 @@ describe('Utils', () => {
       }).toThrow()
     })
   })
+  describe('parseTimeFormat', () => {
+    it('should return { type: HOUR } when pass 1h', () => {
+      expect(Utils.parseTimeFormat('1h')).toEqual({
+        type: 'HOUR',
+        value: 1,
+      })
+    })
+    it('should return { type: HOUR } when pass 24h', () => {
+      expect(Utils.parseTimeFormat('24h')).toEqual({
+        type: 'HOUR',
+        value: 24,
+      })
+    })
+    it('should return { type: MINUTE } when pass 30m', () => {
+      expect(Utils.parseTimeFormat('30m')).toEqual({
+        type: 'MINUTE',
+        value: 30,
+      })
+    })
+    it('should return error when pass 1h30m', () => {
+      expect(Utils.parseTimeFormat('1h30m')).toBeInstanceOf(Error)
+    })
+  })
 })
