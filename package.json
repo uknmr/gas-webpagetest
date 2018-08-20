@@ -2,6 +2,7 @@
   "name": "gas-webpagetest",
   "private": true,
   "scripts": {
+    "create-gas": "node scripts/create.js",
     "deploy": "run-s clean build push",
     "push": "clasp push",
     "clean": "rimraf dist",
