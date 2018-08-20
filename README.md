@@ -127,7 +127,7 @@ yarn run deploy
 - Update column titles
   - Update spreadsheet title columns
 
-These functions can be called manually.
+These functions can be called manually.  
 However, These functions can be regularly called by **Time Trigger**.
 
 So, you can set **Time Trigger** by the following function.
