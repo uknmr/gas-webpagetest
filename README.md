@@ -3,6 +3,8 @@
 > ### *You can't control what you can't measure.*
 > Tom DeMarco (1982) Controlling Software Projects.
 
+This [Google Apps Scripts](https://developers.google.com/apps-script/) help to measure your website using [WebPagetest](https://www.webpagetest.org/).
+
 ## Requirements
 
 - Node.js
@@ -22,8 +24,8 @@
 
 ### Optional
 
-- Google DataStudio
-  - It help visualization of data
+- [Google DataStudio](https://datastudio.google.com/)
+  - It help to visualize your data
 
 ## Usage
 
@@ -78,7 +80,7 @@ yarn run create-gas "<script title>" "<spreadsheet id>"
 > Error: Permission denied. Enable the Apps Script API:
 > https://script.google.com/home/usersettings
 
-6. Configure `.env´ file
+6. Configure `.env` file
 
 You have to change these values of `.env` file.
 
@@ -157,8 +159,13 @@ After that, `gas-webpagetest` run tests per 30 minutes and put the results to yo
 
 ![spread-sheet-example.png](docs/img/spread-sheet-example.png)
 
-## Optional: Visualize
+## Optional: Visualization
 
 [Google DataStudio](https://datastudio.google.com) visualize your spreadsheet data.
 
-- TODO: Copy template for `gas-webpagtest` from HERE
+1. [Connect your spreadsheet](https://datastudio.google.com/data) to [Google DataStudio](https://datastudio.google.com)
+2. Open [Template Project](https://datastudio.google.com/open/16CAqnC3ErfJ_B0UypUq4zQzYdReuW24i)
+3. Click "Create new report from the copy" on menu
+    - Use your connected data
+
+![datastudio-example](./docs/img/datastudio-example.png)
