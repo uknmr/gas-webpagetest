@@ -14,13 +14,13 @@ This [Google Apps Scripts](https://developers.google.com/apps-script/) help to m
   - This repository is managed by Yarn
 - Google Account
   - Need to login with [clasp](https://github.com/google/clasp).
-  - `gas-webpagtest` is a Google Apps Script.
+  - `gas-webpagetest` is a Google Apps Script.
 - Google Spreadsheet
-  - `gas-webpagtest` record the result of WebPagetest to Google Spreadsheet
+  - `gas-webpagetest` record the result of WebPagetest to Google Spreadsheet
   - 1 sheet = 1 site
 - WebPagetest API Key
   - [WebPagetest - Get API Key](https://www.webpagetest.org/getkey.php)
-  - `gas-webpagtest` call WebPagetest API and record it.
+  - `gas-webpagetest` call WebPagetest API and record it.
 
 ### Optional
 
@@ -53,7 +53,7 @@ yarn clasp login
 # Login and Authorize clasp
 ```
 
-### Integrate Google Spreadsheet with Google Apps Script(`gas-webpagtest`)
+### Integrate Google Spreadsheet with Google Apps Script(`gas-webpagetest`)
 
 4. Create empty spreadsheet that is recorded result of WebPagetest.
   - You should copy spreadsheet id
@@ -126,9 +126,9 @@ Run following command that deploy this apps script.
 yarn run deploy
 ```
 
-## Setup schedule for `gas-webpagtest` script
+## Setup schedule for `gas-webpagetest` script
 
-`gas-webpagtest` provide these functions and you can invoke these functions from spreadsheet's menu.
+`gas-webpagetest` provide these functions and you can invoke these functions from spreadsheet's menu.
 
 ![spread sheet menu](docs/img/gas-webpagetest-menu.png)
 
