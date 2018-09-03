@@ -148,7 +148,7 @@ So, you can set **Time Trigger** by the following function.
   - You can set time trigger like cron
   - By default, it is per 30 minutes
 
-### Setup  at first time 
+### Setup at first time 
 
 0. Visit your google spread sheet
 1. Invoke "Update column titles" from spread sheet's menu
@@ -158,6 +158,35 @@ So, you can set **Time Trigger** by the following function.
 After that, `gas-webpagetest` run tests per 30 minutes and put the results to your spreadsheet.
 
 ![spread-sheet-example.png](docs/img/spread-sheet-example.png)
+
+## Additional: WebPagetest script
+
+If you want to use scripting for WebPagetest, uncomment `WEBPAGETEST_OPTIONS_SCRIPT_PATH` in `.env` and write script in `script.txt`.
+
+- <https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/scripting>
+
+```
+## WebPagetest Scripting Option
+## Set file path to scripting file
+## https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/scripting
+WEBPAGETEST_OPTIONS_SCRIPT_PATH=./script.txt
+```
+
+Example: `script.txt`
+
+```
+logData	0
+
+// bring up the login screen
+navigate	http://webmail.aol.com
+
+logData	1
+
+// log in
+setValue	name=loginId	someuser@aol.com
+setValue	name=password	somepassword
+submitForm	name=AOLLoginForm
+```
 
 ## Optional: Visualization
 
