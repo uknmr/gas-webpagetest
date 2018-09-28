@@ -33,6 +33,25 @@ class Utils {
   }
 
   /**
+   * Parse value as boolean number
+   * true: 1
+   * false: 0
+   */
+  public static parseBooleanNumberValue(value?: string): boolean {
+    if (!value) {
+      return false
+    }
+    if (value !== '0' && value !== '1') {
+      throw new Error(`This value should be "0" or "1": ${value}`)
+    }
+    const numberValue = Number(value)
+    if (isNaN(numberValue)) {
+      throw new Error(`This value can not be parsed as number: ${value}`)
+    }
+    return numberValue === 1
+  }
+
+  /**
    * Parse time formatted value and return { type, value }
    * Accept format: <value><unit>
    *   - <value>: number

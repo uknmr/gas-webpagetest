@@ -3,6 +3,7 @@ import Utils = require('./Utils')
 
 export const getTestResults = () => {
   const sheetName = process.env.SHEET_NAME
+  const enabledNetworkErrorReport = Utils.parseBooleanNumberValue(process.env.NETWORK_ERROR_REPORT)
   if (!sheetName) {
     throw new Error('should define SHEET_NAME in .env')
   }
@@ -32,7 +33,18 @@ export const getTestResults = () => {
   }
   Logger.log('testIds: %s', testIds.join('\n'))
   const wpt = new WebPagetest()
-  const results = testIds.map(testId => wpt.results(testId))
+  const results = testIds.map(testId => {
+    const results = wpt.results(testId)
+    if (results instanceof Error) {
+      Logger.log('Failed to fetch test result', results)
+      if (enabledNetworkErrorReport) {
+        throw results
+      }
+      // Just return empty results if ignore network error
+      return wpt.createEmptyTestResults()
+    }
+    return results
+  })
 
   const targetRange = sheet.getRange(lastCompletedRow + 1, 2, results.length, results[0].length)
   targetRange.setValues(results)
