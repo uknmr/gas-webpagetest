@@ -24,21 +24,30 @@ export const runTest = (): void => {
   const mobileDevice = process.env.WEBPAGETEST_OPTIONS_MOBILE_DEVICE
   const lighthouse = Utils.parseNumberValue(process.env.WEBPAGETEST_OPTIONS_LIGHTHOUSE)
   const script = process.env.WEBPAGETEST_OPTIONS_SCRIPT_CODE
+  const enabledNetworkErrorReport = Utils.parseBooleanNumberValue(process.env.NETWORK_ERROR_REPORT)
   const wpt = new WebPagetest(key)
-  const testId = wpt.test(url, {
-    runs,
-    location,
-    fvonly,
-    video,
-    // format: JSON for getTestResults
-    format: 'JSON',
-    noOptimization,
-    mobile,
-    mobileDevice,
-    lighthouse,
-    script,
-  })
-
+  let testId
+  try {
+    testId = wpt.test(url, {
+      runs,
+      location,
+      fvonly,
+      video,
+      // format: JSON for getTestResults
+      format: 'JSON',
+      noOptimization,
+      mobile,
+      mobileDevice,
+      lighthouse,
+      script,
+    })
+  } catch (error) {
+    Logger.log('Failed runTest', error)
+    if (enabledNetworkErrorReport) {
+      throw new error
+    }
+    return
+  }
   const activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet()
   if (!activeSpreadsheet) {
     throw new Error('Not found active spreadsheet')
