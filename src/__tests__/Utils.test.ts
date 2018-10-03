@@ -19,6 +19,32 @@ describe('Utils', () => {
       }).toThrow()
     })
   })
+  describe('parseBooleanNumberValue', () => {
+    it('should return false if value is undefined', () => {
+      expect(Utils.parseBooleanNumberValue()).toBe(false)
+    })
+    it('should return false if value is "0"', () => {
+      expect(Utils.parseBooleanNumberValue('0')).toBe(false)
+    })
+    it('should return true if value is "1"', () => {
+      expect(Utils.parseBooleanNumberValue('1')).toBe(true)
+    })
+
+    it('should throw error if value can not be acceptable value', () => {
+      expect(() => {
+        Utils.parseBooleanNumberValue('-1')
+      }).toThrow()
+      expect(() => {
+        Utils.parseBooleanNumberValue('2')
+      }).toThrow()
+      expect(() => {
+        Utils.parseBooleanNumberValue('10')
+      }).toThrow()
+      expect(() => {
+        Utils.parseBooleanNumberValue('a')
+      }).toThrow()
+    })
+  })
   describe('parseTimeFormat', () => {
     it('should return { type: HOUR } when pass 1h', () => {
       expect(Utils.parseTimeFormat('1h')).toEqual({

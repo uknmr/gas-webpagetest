@@ -51,44 +51,61 @@ class WebPagetest {
    *
    * @return {} testId
    */
-  public runTest(url: string, options?: Options): string {
-    const requestURL = this.generateRunTestURL(url, options)
-    const {
-      data: { testId },
-    } = Utils.fetch(requestURL)
-
-    return testId
+  public runTest(url: string, options?: Options): string | Error {
+    try {
+      const requestURL = this.generateRunTestURL(url, options)
+      const response = Utils.fetch(requestURL)
+      const {
+        data: { testId },
+      } = response
+      return testId
+    } catch (error) {
+      return error
+    }
   }
 
-  public getTestStatus(testId: string): number {
-    const {
-      data: { statusCode },
-    } = Utils.fetch(this.generateTestStatusURL(testId))
-
-    return statusCode
+  public getTestStatus(testId: string): number | Error {
+    try {
+      const response = Utils.fetch(this.generateTestStatusURL(testId))
+      const {
+        data: { statusCode },
+      } = response
+      return statusCode
+    } catch (error) {
+      return error
+    }
   }
 
   /**
    * テスト結果取得
    *
-   * @param {type}    testId - this is the parameter testId
-   *
-   * @return {Object} responsedata
+   * @param testId - this is the parameter testId
+   * @returns {string[]|Error} response data
    */
   public getTestResults(testId) {
     // 空文字は無視する
     if (testId.length === 0) {
-      return new Array(this.countOfResults()).fill('')
+      return this.createEmptyTestResults()
     }
 
     const statusCode = this.getTestStatus(testId)
+    if (statusCode instanceof Error) {
+      return statusCode // Return Error object
+    }
     if (statusCode !== 200) {
-      return new Array(this.countOfResults()).fill('')
+      return this.createEmptyTestResults()
     }
 
     const requestURL = this.generateTestResultsURL(testId)
     const response = Utils.fetch(requestURL)
     return this.generateTestResultValues(this.convertWebPageResponseToResult(response))
+  }
+
+  /**
+   * Return empty row data
+   */
+  public createEmptyTestResults() {
+    return new Array(this.countOfResults()).fill('')
   }
 
   public test = this.runTest

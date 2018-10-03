@@ -5,6 +5,7 @@ declare namespace NodeJS {
     RUN_TEST_URL?: string
     RUN_TEST_INTERVAL?: string
     SHEET_NAME?: string
+    NETWORK_ERROR_REPORT?: string
     WEBPAGETEST_OPTIONS_RUNS?: string
     WEBPAGETEST_OPTIONS_LOCATION?: string
     WEBPAGETEST_OPTIONS_FVONLY?: string
