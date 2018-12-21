@@ -4,75 +4,75 @@ exports[`WebPagetest generateTestResult should return results: WebPagetest-respo
 Array [
   Object {
     "name": "completedTimeStamp",
-    "value": 1532835031,
+    "value": 1545376360,
   },
   Object {
     "name": "yyyyMMddHH",
-    "value": "2018-07-29T03:30:31.000Z, GMT+9, yyyyMMddHH",
+    "value": "2018-12-21T07:12:40.000Z, GMT+9, yyyyMMddHH",
   },
   Object {
     "name": "yyyyMMdd",
-    "value": "2018-07-29T03:30:31.000Z, GMT+9, yyyyMMdd",
+    "value": "2018-12-21T07:12:40.000Z, GMT+9, yyyyMMdd",
   },
   Object {
     "name": "firstByte",
-    "value": "0.48",
+    "value": "0.51",
   },
   Object {
     "name": "firstLayout",
-    "value": "0.54",
+    "value": "0.58",
   },
   Object {
     "name": "firstPaint",
-    "value": "0.59",
+    "value": "0.64",
   },
   Object {
     "name": "firstContentfulPaint",
-    "value": "0.59",
+    "value": "0.64",
   },
   Object {
     "name": "firstMeaningfulPaint",
-    "value": "0.59",
+    "value": "0.64",
   },
   Object {
     "name": "speedIndex",
-    "value": "0.61",
+    "value": "0.69",
   },
   Object {
     "name": "domInteractive",
-    "value": "0.63",
+    "value": "0.71",
   },
   Object {
     "name": "loadTime",
-    "value": "1.47",
+    "value": "1.58",
   },
   Object {
     "name": "visualComplete",
-    "value": "1.10",
+    "value": "3.50",
   },
   Object {
     "name": "fullyLoaded",
-    "value": "1.91",
+    "value": "1.80",
   },
   Object {
     "name": "timeToInteractive",
-    "value": "1.96",
+    "value": "0.64",
   },
   Object {
     "name": "html.bytes",
-    "value": "68.6",
+    "value": "71.9",
   },
   Object {
     "name": "html.requests",
-    "value": 9,
+    "value": 8,
   },
   Object {
     "name": "js.bytes",
-    "value": "286.7",
+    "value": "276.3",
   },
   Object {
     "name": "js.requests",
-    "value": 5,
+    "value": 4,
   },
   Object {
     "name": "css.bytes",
@@ -84,11 +84,11 @@ Array [
   },
   Object {
     "name": "image.bytes",
-    "value": "37.7",
+    "value": "115.4",
   },
   Object {
     "name": "image.requests",
-    "value": 6,
+    "value": 4,
   },
   Object {
     "name": "font.bytes",
@@ -124,7 +124,7 @@ Array [
   },
   Object {
     "name": "summary",
-    "value": "http://www.webpagetest.org/results.php?test=180729_D6_c92a1ce569da3ae435ac558fc934a38b",
+    "value": "https://www.webpagetest.org/results.php?test=181221_6D_2be6185d42ad195dc712fcbe47b8cd6f",
   },
   Object {
     "name": "finalURL",
@@ -136,15 +136,15 @@ Array [
   },
   Object {
     "name": "browserVersion",
-    "value": "68.0.3440.75",
+    "value": "71.0.3578.98",
   },
   Object {
     "name": "visualComplete85",
-    "value": "0.6",
+    "value": "0.7",
   },
   Object {
     "name": "visualComplete90",
-    "value": "0.6",
+    "value": "0.7",
   },
   Object {
     "name": "visualComplete95",
@@ -152,35 +152,35 @@ Array [
   },
   Object {
     "name": "visualComplete99",
-    "value": "0.7",
+    "value": "1.1",
   },
   Object {
     "name": "bytesOut",
-    "value": "12.3",
+    "value": "9.2",
   },
   Object {
     "name": "bytesOutDoc",
-    "value": "8.7",
+    "value": "6.0",
   },
   Object {
     "name": "bytesIn",
-    "value": "393.0",
+    "value": "465.3",
   },
   Object {
     "name": "bytesInDoc",
-    "value": "374.2",
+    "value": "463.1",
   },
   Object {
     "name": "connections",
-    "value": 8,
+    "value": 4,
   },
   Object {
     "name": "requestsDoc",
-    "value": 15,
+    "value": 13,
   },
   Object {
     "name": "responses_200",
-    "value": 13,
+    "value": 11,
   },
   Object {
     "name": "responses_404",
@@ -188,7 +188,7 @@ Array [
   },
   Object {
     "name": "responses_other",
-    "value": 7,
+    "value": 6,
   },
 ]
 `;
