@@ -165,6 +165,8 @@ class WebPagetest {
             loadTime,
             visualComplete,
             fullyLoaded,
+            FirstInteractive: firstInteractive,
+            LastInteractive: lastInteractive,
             'lighthouse.Performance.interactive': timeToInteractive,
             breakdown,
             final_url: finalURL,
@@ -203,7 +205,11 @@ class WebPagetest {
       loadTime,
       visualComplete,
       fullyLoaded,
-      timeToInteractive,
+      // 5 秒のアイドル時間がないと FirstInteractive は測定できないので、その場合は LastInteractive を見るのが WPT の仕様
+      // リージョンや過去のテストなど FirstInteractive / LastInteractive が存在しない場合もあるので、ない場合は Lighthouse の TTI を見る
+      // - https://github.com/WPO-Foundation/webpagetest/issues/1162#issuecomment-404304316
+      // - https://github.com/WPO-Foundation/webpagetest/issues/1229#issuecomment-446710842
+      timeToInteractive: firstInteractive || lastInteractive || timeToInteractive,
       breakdown,
       summary,
       finalURL,
