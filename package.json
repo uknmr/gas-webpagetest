@@ -17,7 +17,7 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "@google/clasp": "~1.4",
+    "@google/clasp": "~2.1",
     "@types/google-apps-script": "^0.0.26",
     "@types/jest": "^23.3.1",
     "@types/node": "^10.5.4",
