@@ -8,7 +8,8 @@ const claspJSONPath = path.join(rootDir, '.clasp.json')
 // run clasp create if have not .clasp.json
 if (!fs.existsSync(claspJSONPath)) {
   const clasp = require.resolve('.bin/clasp')
-  spawn.sync(clasp, ['create'].concat(process.argv.slice(2)), {
+  const [, , title, parentId] = process.argv
+  spawn.sync(clasp, ['create', '--title', title, '--parentId', parentId], {
     cwd: rootDir,
     stdio: 'inherit',
     shell: true,
