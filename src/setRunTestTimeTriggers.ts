@@ -1,4 +1,4 @@
-import 'core-js/modules/es6.number.is-integer'
+import 'core-js/modules/es.number.is-integer'
 import { TimeTrigger } from './TimeTrigger'
 import Utils = require('./Utils')
 
