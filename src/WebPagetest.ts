@@ -1,6 +1,6 @@
 import * as queryString from 'querystring'
 import Utils = require('./Utils')
-import 'core-js/modules/es6.array.fill'
+import 'core-js/modules/es.array.fill'
 
 type TestResult = {
   completed: number
