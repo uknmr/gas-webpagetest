@@ -4,11 +4,17 @@ class Utils {
     return JSON.parse(response.getContentText())
   }
 
-  public static getLastRow(sheet, row) {
-    return sheet
-      .getRange(`${row}:${row}`)
-      .getValues()
-      .filter(String).length
+  public static getLastRow(sheet, column) {
+    const targetColumnRange = sheet.getRange(`${column}:${column}`)
+    const lowermostCell = sheet.getRange(
+      targetColumnRange.getLastRow(),
+      targetColumnRange.getColumn()
+    )
+    if (lowermostCell.getValue()) {
+      return lowermostCell.getRow()
+    } else {
+      return lowermostCell.getNextDataCell(SpreadsheetApp.Direction.UP).getRow()
+    }
   }
 
   public static transform(value, digits = 2) {
